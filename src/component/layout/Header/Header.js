@@ -58,7 +58,7 @@ const Header = () => {
                         <li><Link to="#">Terms of use</Link></li>
                         <li><Link to="#">Contact</Link></li>
                         <li>
-                            <Link to="#">
+                            <Link to="/search">
                                 <FaSearch /> {/* Add the search icon here */}
                             </Link>
                         </li>

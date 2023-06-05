@@ -96,7 +96,10 @@
   @media screen and (max-width: 600px) {
     .filterBox {
       width: 20vmax;
-      position: static;
+      /* position: static; */
+      position: relative;
+      top: initial;
+      left: initial;
       margin: auto;
     }
   
