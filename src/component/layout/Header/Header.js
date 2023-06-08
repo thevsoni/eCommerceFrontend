@@ -50,11 +50,20 @@ const Header = () => {
         <>
             <header>
                 <img src="https://codetheweb.blog/assets/img/icon2.png" />
+                {/* 
+                <input type="checkbox" id="menu-toggle" />
+                 <label for="menu-toggle" class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                 */}
                 <nav>
                     <ul>
-                        <li><Link to="#">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="#">About</Link></li>
                         <li><Link to="/products">Products</Link></li>
+                        <li><Link to="/login">Login/signup</Link></li>
                         <li><Link to="#">Terms of use</Link></li>
                         <li><Link to="#">Contact</Link></li>
                         <li>
