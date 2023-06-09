@@ -16,6 +16,13 @@ import UserOptions from "./component/layout/Header/UserOptions.js";
 import { useSelector } from 'react-redux';
 import Profile from "./component/User/Profile.js";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
+import UpdateProfile from "./component/User/UpdateProfile.js";
+import UpdatePassword from "./component/User/UpdatePassword.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
+import ResetPassword from "./component/User/ResetPassword.js";
+import Cart from "./component/Cart/Cart.js";
+import Shipping from "./component/Cart/Shipping.js";
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
 
 
 function App() {
@@ -48,6 +55,7 @@ function App() {
         <Route path='/products/:keyword' element={< Products />} />
         <Route path='/search' element={< Search />} />
 
+        <Route path='/login' element={< LoginSignup />} />
         <Route path='/account' element={isAuthenticated ? < Profile /> : <LoginSignup />} />
         {/* {isAuthenticated && <Route path='/account' element={isAuthenticated ? < Profile /> : <LoginSignup />} />} */}
         {/* it doesnt work */}
@@ -58,10 +66,19 @@ function App() {
           element={<ProtectedRoute element={<Profile />} />}
         /> */}
         {/* it is also not giving my desired output */}
+        <Route path='/me/update' element={isAuthenticated ? < UpdateProfile /> : <LoginSignup />} />
+        <Route path='/password/update' element={isAuthenticated ? < UpdatePassword /> : <LoginSignup />} />
+        <Route path="/password/forgot" element={<ForgotPassword />} />
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
+
+        <Route path="/cart" element={<Cart />} />
+
+        <Route path="/shipping" element={<Shipping />} />
+
+        <Route path='/order/confirm' element={isAuthenticated ? < ConfirmOrder /> : <LoginSignup />} />
 
 
 
-        <Route path='/login' element={< LoginSignup />} />
 
 
 

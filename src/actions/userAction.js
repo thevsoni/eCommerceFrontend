@@ -126,7 +126,10 @@ export const updateProfile = (userData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PROFILE_REQUEST });
 
-        const config = { headers: { "Content-Type": "multipart/form-data" } };
+        const config = {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true
+        };
 
         const { data } = await Axios.put(`/api/v1/me/update`, userData, config);
 
@@ -144,7 +147,11 @@ export const updatePassword = (passwords) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
 
-        const config = { headers: { "Content-Type": "application/json" } };
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+
+        };
 
         const { data } = await Axios.put(
             `/api/v1/password/update`,
@@ -166,8 +173,11 @@ export const forgotPassword = (email) => async (dispatch) => {
     try {
         dispatch({ type: FORGOT_PASSWORD_REQUEST });
 
-        const config = { headers: { "Content-Type": "application/json" } };
-
+        // const config = { headers: { "Content-Type": "application/json" } };
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        };
         const { data } = await Axios.post(`/api/v1/password/forgot`, email, config);
 
         dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
@@ -184,8 +194,11 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     try {
         dispatch({ type: RESET_PASSWORD_REQUEST });
 
-        const config = { headers: { "Content-Type": "application/json" } };
-
+        // const config = { headers: { "Content-Type": "application/json" } };
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        };
         const { data } = await Axios.put(
             `/api/v1/password/reset/${token}`,
             passwords,

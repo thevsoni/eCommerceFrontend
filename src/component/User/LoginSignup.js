@@ -8,6 +8,7 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import FaceIcon from "@mui/icons-material/Face";
 import { useDispatch, useSelector } from 'react-redux';
 import { login, register, clearErrors } from '../../actions/userAction';
+import { useLocation } from 'react-router-dom';
 
 import { toast } from 'react-hot-toast';
 
@@ -15,6 +16,8 @@ import { toast } from 'react-hot-toast';
 const LoginSignup = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+
     const { loading, error, isAuthenticated } = useSelector(state => state.user)
 
     const dispatch = useDispatch();
@@ -92,6 +95,7 @@ const LoginSignup = () => {
         }
     }
 
+    const redirect = location?.search ? location.search.split("=")[1] : "/account";
     useEffect(() => {
         if (error) {
             toast.error(error);
@@ -99,9 +103,20 @@ const LoginSignup = () => {
         }
         if (isAuthenticated) {
             toast.success("login successful")
-            navigate("/account")
+            // navigate("/account")
+            // navigate(`${redirect}`)
+            // navigate("/shipping")
+            // navigate(redirect, { replace: true })
+            // navigate("/" + redirect)
+            navigate("/" + redirect, { replace: true })
+            //using this what happens, if someone click on checkout then user will come firstly in this page 
+            //since in this case, location.search present since, redirect = "shipping" so user will redirect 
+            //to "/shipping" but when he will click on back button then he will not see previous login page
+            //which is good from user perspective. 
+            // if u dont do replace:true then login page again will being seen by user which will irritate to user
+
         }
-    }, [dispatch, error, isAuthenticated]);
+    }, [dispatch, error, isAuthenticated, redirect]);
 
     return (
         <Fragment>

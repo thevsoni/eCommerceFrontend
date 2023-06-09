@@ -13,16 +13,12 @@ import {
 
 export const getProduct = (keyword = "", currentPage = 1, price = [0, 5000], category, ratings = 0) => async (dispatch) => {
     try {
-        console.log("ai")
         dispatch({ type: ALL_PRODUCT_REQUEST })
-        console.log("bi")
         let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
         if (category) {
             link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
         }
-        console.log("ci")
         const { data } = await Axios.get(link)
-        console.log("di")
         dispatch({
             type: ALL_PRODUCT_SUCCESS,
             payload: data,
@@ -39,7 +35,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
         const { data } = await Axios.get(`/api/v1/product/${id}`)
-        // console.log(data.products.length, "hi", data)
+        // console.log(data)
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data.product,

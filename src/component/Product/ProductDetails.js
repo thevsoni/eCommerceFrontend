@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { clearErrors, getProductDetails } from "../../actions/productAction";
@@ -9,9 +9,10 @@ import ReactStars from "react-rating-stars-component";
 import MetaData from "../layout/MetaData.js";
 import ReviewCard from "./ReviewCard.js";
 import { toast } from "react-hot-toast"
-
+import { addItemsToCart } from "../../actions/cartAction";
 
 const ProductDetails = () => {
+
     const dispatch = useDispatch();
     const params = useParams();
     const { product, loading, error } = useSelector((state) => state.productDetails);
@@ -24,6 +25,7 @@ const ProductDetails = () => {
         dispatch(getProductDetails(params.id));
     }, [dispatch, params.id, error]);
     // console.log(product)
+
     const options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -32,6 +34,35 @@ const ProductDetails = () => {
         size: window.innerWidth < 600 ? 20 : 25,
         isHalf: true,
     }
+
+
+    const [quantity, setQuantity] = useState(1);
+    const [open, setOpen] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("");
+
+    const increaseQuantity = () => {
+        if (product.stock <= quantity) {
+            toast.error("stock is not available for this quantity")
+            return;
+        }
+
+        const qty = quantity + 1;
+        setQuantity(qty);
+    };
+
+    const decreaseQuantity = () => {
+        if (0 >= quantity) return;
+
+        const qty = quantity - 1;
+        setQuantity(qty);
+    };
+
+    const addToCartHandler = () => {
+        dispatch(addItemsToCart(params.id, quantity));
+        toast.success("Item Added To Cart");
+    };
+
     return (
         <Fragment>
             {loading ? (
@@ -66,11 +97,16 @@ const ProductDetails = () => {
                                 <h1>{`${product?.price}`}</h1>
                                 <div className='detailsBlock-3-1'>
                                     <div className="detailsBlock-3-1-1">
-                                        <button>-</button>
-                                        <input value="1" type="number" />
-                                        <button>+</button>
+                                        <button onClick={decreaseQuantity}>-</button>
+                                        <input readOnly value={quantity} type="number" />
+                                        <button onClick={increaseQuantity}>+</button>
                                     </div>{" "}
-                                    <button>Add to cart</button>
+                                    <button
+                                        disabled={product?.stock < 1 ? true : false}
+                                        onClick={addToCartHandler}
+                                    >
+                                        Add to cart
+                                    </button>
                                 </div>
                                 <p>
                                     Status:{" "}
