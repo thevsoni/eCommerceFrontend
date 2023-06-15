@@ -94,9 +94,8 @@ export const loadUser = () => async (dispatch) => {
             withCredentials: true //bcs i have to set token in cookie ,so avoid cross origin,we have to do it
         };
 
-
         const { data } = await Axios.get(`/api/v1/me`, config);
-
+        // console.log(data)
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
         dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });

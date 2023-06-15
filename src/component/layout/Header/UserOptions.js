@@ -47,7 +47,7 @@ const UserOptions = ({ user }) => {
 
     const navigate = useNavigate();
     function dashboard() {
-        navigate("/dashboard");
+        navigate("/admin/dashboard");
     }
     function orders() {
         navigate("/orders");

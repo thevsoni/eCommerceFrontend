@@ -95,7 +95,8 @@ const LoginSignup = () => {
         }
     }
 
-    const redirect = location?.search ? location.search.split("=")[1] : "/account";
+    // const redirect = location?.search ? location.search.split("=")[1] : "/account";
+    const redirect = location?.search ? location.search : "account";
     useEffect(() => {
         if (error) {
             toast.error(error);
@@ -105,15 +106,20 @@ const LoginSignup = () => {
             toast.success("login successful")
             // navigate("/account")
             // navigate(`${redirect}`)
+            // navigate(redirect)
             // navigate("/shipping")
             // navigate(redirect, { replace: true })
             // navigate("/" + redirect)
-            navigate("/" + redirect, { replace: true })
+            // navigate("/" + redirect, { replace: true })
             //using this what happens, if someone click on checkout then user will come firstly in this page 
             //since in this case, location.search present since, redirect = "shipping" so user will redirect 
             //to "/shipping" but when he will click on back button then he will not see previous login page
             //which is good from user perspective. 
             // if u dont do replace:true then login page again will being seen by user which will irritate to user
+
+            // navigate("/account")
+            // navigate("/" + redirect, {replace:true});
+            navigate(`/${redirect}`);
 
         }
     }, [dispatch, error, isAuthenticated, redirect]);

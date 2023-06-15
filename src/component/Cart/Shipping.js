@@ -28,8 +28,7 @@ const Shipping = () => {
 
     const navigate = useNavigate();
 
-    const shippingSubmit = (e) => {
-        console.log("first")
+    const shippingSubmit = async (e) => {
         e.preventDefault();
         if (phoneNo.length < 10 || phoneNo.length > 10) {
             toast.error("Phone Number should be 10 digits Long");
