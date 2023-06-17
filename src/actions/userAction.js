@@ -217,7 +217,11 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_USERS_REQUEST });
-        const { data } = await Axios.get(`/api/v1/admin/users`);
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        };
+        const { data } = await Axios.get(`/api/v1/admin/users`, config);
 
         dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
     } catch (error) {
@@ -229,7 +233,11 @@ export const getAllUsers = () => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
-        const { data } = await Axios.get(`/api/v1/admin/user/${id}`);
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        };
+        const { data } = await Axios.get(`/api/v1/admin/user/${id}`, config);
 
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
     } catch (error) {
@@ -242,7 +250,10 @@ export const updateUser = (id, userData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_USER_REQUEST });
 
-        const config = { headers: { "Content-Type": "application/json" } };
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        };
 
         const { data } = await Axios.put(
             `/api/v1/admin/user/${id}`,
@@ -264,7 +275,12 @@ export const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_USER_REQUEST });
 
-        const { data } = await Axios.delete(`/api/v1/admin/user/${id}`);
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        };
+
+        const { data } = await Axios.delete(`/api/v1/admin/user/${id}`, config);
 
         dispatch({ type: DELETE_USER_SUCCESS, payload: data });
     } catch (error) {

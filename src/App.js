@@ -32,6 +32,14 @@ import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
 import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
+import NewProduct from './component/Admin/NewProduct';
+import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import OrderList from "./component/Admin/OrderList.js";
+import ProcessOrder from "./component/Admin/ProcessOrder.js";
+import UsersList from "./component/Admin/UsersList.js";
+import UpdateUser from "./component/Admin/UpdateUser.js";
+import ProductReviews from "./component/Admin/ProductReviews.js";
+
 
 function App() {
 
@@ -103,6 +111,17 @@ function App() {
 
         <Route path="/admin/dashboard" element={isAuthenticated === true ? (user?.role === 'admin' ? <Dashboard /> : <LoginSignup />) : <LoginSignup />} />
         <Route path="/admin/products" element={isAuthenticated === true ? (user?.role === 'admin' ? <ProductList /> : <LoginSignup />) : <LoginSignup />} />
+        <Route path="/admin/product" element={isAuthenticated === true ? (user?.role === 'admin' ? <NewProduct /> : <LoginSignup />) : <LoginSignup />} />
+        <Route path="/admin/product/:id" element={isAuthenticated === true ? (user?.role === 'admin' ? <UpdateProduct /> : <LoginSignup />) : <LoginSignup />} />
+        <Route path="/admin/orders" element={isAuthenticated === true ? (user?.role === 'admin' ? <OrderList /> : <LoginSignup />) : <LoginSignup />} />
+        <Route path="/admin/order/:id" element={isAuthenticated === true ? (user?.role === 'admin' ? <ProcessOrder /> : <LoginSignup />) : <LoginSignup />} />
+
+        <Route path="/admin/users" element={isAuthenticated === true ? (user?.role === 'admin' ? <UsersList /> : <LoginSignup />) : <LoginSignup />} />
+        <Route path="/admin/user/:id" element={isAuthenticated === true ? (user?.role === 'admin' ? <UpdateUser /> : <LoginSignup />) : <LoginSignup />} />
+
+
+        <Route path="/admin/reviews" element={isAuthenticated === true ? (user?.role === 'admin' ? <ProductReviews /> : <LoginSignup />) : <LoginSignup />} />
+
 
       </Routes>
       <Footer />

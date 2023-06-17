@@ -27,7 +27,7 @@ const MyOrders = () => {
             flex: 0.5,
             cellClassName: (params) => {
                 // console.log(params.formattedValue)
-                return params.formattedValue === "Delivered"
+                return (params.formattedValue === "delivered" || params.formattedValue === "Delivered")
                     ? "gc"
                     : "rc";
             },
