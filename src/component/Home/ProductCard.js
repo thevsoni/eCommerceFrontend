@@ -13,6 +13,7 @@ const ProductCard = ({ product }) => {
     //     size: window.innerWidth < 600 ? 20 : 25,
     //     isHalf: true,
     // }
+
     const options = {
         size: "large",
         value: product?.ratings ? product.ratings : 0,

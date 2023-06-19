@@ -61,11 +61,11 @@ const Header = () => {
                 <nav>
                     <ul>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="#">About</Link></li>
+                        {/* <li><Link to="#">About</Link></li> */}
                         <li><Link to="/products">Products</Link></li>
                         <li><Link to="/login">Login/signup</Link></li>
-                        <li><Link to="#">Terms of use</Link></li>
-                        <li><Link to="#">Contact</Link></li>
+                        {/* <li><Link to="#">Terms of use</Link></li> */}
+                        {/* <li><Link to="#">Contact</Link></li> */}
                         <li>
                             <Link to="/search">
                                 <FaSearch /> {/* Add the search icon here */}
